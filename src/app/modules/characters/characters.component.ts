@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MarvelService } from '../services/marvel.service';
-import { ICharacter } from '../models';
+import { MarvelService } from '../../services/marvel.service';
+import { ICharacter } from '../../models';
 
 @Component({
   selector: 'app-characters',
@@ -9,9 +9,11 @@ import { ICharacter } from '../models';
   providers: [MarvelService],
 })
 export class CharactersComponent implements OnInit {
-  data!: any;
+  data!:ICharacter[]
   constructor(public marvelService: MarvelService) {}
   ngOnInit(): void {
-    this.marvelService.fetchData();
+     this.marvelService.getCharacter().subscribe((data: any) => {
+       this.data = data.data.results;
+     });
   }
 }

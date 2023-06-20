@@ -1,9 +1,2 @@
-<p *ngIf="!data">Loading...</p>
-<div class="characters-container" *ngIf="data">
-  <ul class="character-list" *ngFor="let char of data">
-    <li class="character-item">
-      <strong class="character-name">Name:</strong> {{ char.name }}
-    </li>
-  </ul>
-</div>
+<app-characters-table></app-characters-table>
 <router-outlet></router-outlet>

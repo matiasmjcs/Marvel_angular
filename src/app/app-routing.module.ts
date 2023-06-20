@@ -5,21 +5,19 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'home',
-    loadChildren: () =>
-      import('./modules').then(
-        (m) => m.HomeModule
-      ),
+    loadChildren: () => import('./modules').then((m) => m.HomeModule),
   },
   {
     path: 'characters',
-    loadChildren: () =>
-      import('./modules').then(
-        (m) => m.CharactersModule
-      ),
+    loadChildren: () => import('./modules').then((m) => m.CharactersModule),
+  },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./modules').then((m) => m.FavoritesModule),
   },
 ];
 

@@ -1,4 +1,10 @@
-<nav>
-    <a routerLink="/">home</a>
-    <a routerLink="/characters">characters</a>
-</nav>
+<mat-toolbar>
+    <button routerLink="/" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon >home</mat-icon>
+    </button>
+    <a class="nav_a" routerLink="/characters">character</a>
+    <span class="example-spacer"></span>
+    <button routerLink="/favorites" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon >favorite</mat-icon>
+    </button>
+</mat-toolbar>

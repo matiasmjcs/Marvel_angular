@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MarvelService } from '../../services/marvel.service';
-import { ICharacter } from '../../models';
-import { FavoritesService } from 'src/app/services/favorites.service';
 
 @Component({
   selector: 'app-characters',
@@ -10,14 +8,9 @@ import { FavoritesService } from 'src/app/services/favorites.service';
   providers: [MarvelService],
 })
 export class CharactersComponent implements OnInit {
-  data!: ICharacter[];
-  constructor(public marvelService: MarvelService, private favoritesService: FavoritesService) {}
+  constructor() {}
   ngOnInit(): void {
-    this.marvelService.getCharacter().subscribe((data: any) => {
-      this.data = data.data.results;
-    });
+   
   }
-  favorite(char: ICharacter) {
-    this.favoritesService.addFavoriteCharacter(char);
-  }
+  
 }

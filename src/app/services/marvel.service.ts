@@ -13,12 +13,12 @@ export class MarvelService {
   privateKey = environment.private_key;
   ts = '1';
   hash: CryptoJS.lib.WordArray;
-  url: string;
   constructor(private http: HttpClient, public router: Router) {
-     this.hash = MD5(this.ts + this.privateKey + this.publicKey);
-     this.url = `https://gateway.marvel.com/v1/public/characters?ts=${this.ts}&apikey=${this.publicKey}&hash=${this.hash}`;
+    this.hash = MD5(this.ts + this.privateKey + this.publicKey);
   }
-  getCharacter() {
-    return this.http.get(this.url);
+  getMarvelService(search: string) {
+    return this.http.get(
+      `https://gateway.marvel.com/v1/public/${search}?ts=${this.ts}&apikey=${this.publicKey}&hash=${this.hash}`
+    );
   }
 }

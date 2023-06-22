@@ -4,7 +4,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ICharacter } from 'src/app/models';
+import { ICharacter, IComic } from 'src/app/models';
 import { FavoritesService } from 'src/app/services/favorites.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,21 +25,21 @@ import { MatIconModule } from '@angular/material/icon';
   ],
 })
 export class FavoritesTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'name', 'stories', 'series', 'removed'];
-  dataSource: MatTableDataSource<ICharacter> = new MatTableDataSource();
+  displayedColumns: string[] = ['name', 'removed'];
+  dataSource: MatTableDataSource<ICharacter | IComic> = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private favoritesService: FavoritesService) {}
 
   ngAfterViewInit(): void {
-    this.favoritesService.getFavoriteCharacter.subscribe(
-      (characters: ICharacter[]) => {
-        this.dataSource = new MatTableDataSource(characters);
+    this.favoritesService.getFavorite.subscribe(
+      (favorite:Array<ICharacter | IComic>) => {
+        this.dataSource = new MatTableDataSource(favorite);
         console.log(this.dataSource);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        this.favoritesService.getFavoriteCharacter.subscribe();
+        this.favoritesService.getFavorite.subscribe();
       }
     );
   }
@@ -54,10 +54,10 @@ export class FavoritesTableComponent implements AfterViewInit {
   }
 
   favorite(char: ICharacter) {
-    this.favoritesService.addFavoriteCharacter(char);
+    this.favoritesService.addFavorite(char);
   }
 
   removed(char: ICharacter) {
-    this.favoritesService.removeFavoriteCharacter(char);
+    this.favoritesService.removeFavorite(char);
   }
 }

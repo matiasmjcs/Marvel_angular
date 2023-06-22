@@ -1,0 +1,34 @@
+
+// div contenedor
+.mat-elevation-z8 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-x: auto;
+  background-color: #424242;
+}
+
+// table
+table {
+  width: 90%;
+}  
+// paginator
+.paginator {
+  width: 100%;
+}
+// button favorites
+.td_add {
+  cursor: pointer;
+}
+.red {
+  color: #C2185B;
+}
+
+.mat-row.mat-no-row {
+  color: #ffffff; /* Cambia el color de texto a blanco */
+  font-weight: bold; /* Aplica negrita al texto */
+  text-align: center; /* Centra el texto horizontalmente */
+  padding: 10px; /* Añade espacio interno alrededor del texto */
+}
+

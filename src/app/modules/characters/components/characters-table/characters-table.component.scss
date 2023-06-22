@@ -1,0 +1,28 @@
+
+// div contenedor
+.mat-elevation-z8 {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-x: auto;
+  background-color: #424242;
+}
+
+// table
+table {
+  width: 90%;
+}  
+// paginator
+.paginator {
+  width: 100%;
+}
+// button favorites
+.td_add {
+  cursor: pointer;
+}
+.red {
+  color: #C2185B;
+}
+
+

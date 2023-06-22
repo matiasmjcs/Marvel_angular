@@ -8,6 +8,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, NavComponent],
@@ -19,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

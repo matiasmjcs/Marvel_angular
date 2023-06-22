@@ -27,7 +27,7 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class CharactersTableComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'stories', 'series', 'favorites'];
+  displayedColumns: string[] = ['name', 'stories', 'series', 'favorites'];
   dataSource: MatTableDataSource<ICharacter> = new MatTableDataSource();
   characters: ICharacter[] = [];
 
@@ -35,7 +35,7 @@ export class CharactersTableComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
-    this.marvelService.getCharacter().subscribe((data: any) => {
+    this.marvelService.getMarvelService('characters').subscribe((data: any) => {
       this.characters = data.data.results;
       this.dataSource = new MatTableDataSource(this.characters);
       console.log(this.dataSource);
@@ -58,13 +58,13 @@ export class CharactersTableComponent implements OnInit {
   }
 
   favorite(char: ICharacter) {
-    this.favoritesService.addFavoriteCharacter(char);
+    this.favoritesService.addFavorite(char);
   }
 
   isFavorite(char: ICharacter) {
     return this.favoritesService.isFavoriteCharacter(char);
   }
   removed(char: ICharacter) {
-    this.favoritesService.removeFavoriteCharacter(char);
+    this.favoritesService.removeFavorite(char);
   }
 }

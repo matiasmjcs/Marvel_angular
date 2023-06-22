@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
-import { ICharacter } from '../models';
+import { ICharacter, IComic } from '../models';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoritesService {
-  private favoritesCharacter: ICharacter[] = [];
-  private _favoritesCharacter: BehaviorSubject<ICharacter[]> =
-    new BehaviorSubject<ICharacter[]>([]);
+  private favoritesCharacter: Array<ICharacter | IComic> = [];
+  private _favoritesCharacter: BehaviorSubject<Array<ICharacter | IComic>> =
+    new BehaviorSubject<Array<ICharacter | IComic>>([]);
   constructor() {}
-  addFavoriteCharacter(character: ICharacter) {
-    if (!this.favoritesCharacter.find((c) => c.id === character.id)) {
-      this.favoritesCharacter.push(character);
+  addFavorite(favorite: ICharacter | IComic) {
+    if (!this.favoritesCharacter.find((f) => f.id === favorite.id)) {
+      this.favoritesCharacter.push(favorite);
       this._favoritesCharacter.next(this.favoritesCharacter);
     }
   }
 
-  get getFavoriteCharacter() {
+  get getFavorite() {
     return this._favoritesCharacter.asObservable();
   }
 
-  removeFavoriteCharacter(character: ICharacter) {
+  removeFavorite(favorite: ICharacter | IComic) {
     this.favoritesCharacter = this.favoritesCharacter.filter(
-      (c) => c.id !== character.id
+      (f) => f.id !== favorite.id
     );
     this._favoritesCharacter.next(this.favoritesCharacter);
   }
 
-  isFavoriteCharacter(char: ICharacter) {
-    return this.favoritesCharacter.find((c) => c.id === char.id) ? true : false;
+  isFavoriteCharacter(favorite: ICharacter | IComic) {
+    return this.favoritesCharacter.find((f) => f.id === favorite.id) ? true : false;
   }
 }
